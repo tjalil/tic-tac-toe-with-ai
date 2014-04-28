@@ -14,8 +14,19 @@ $(document).ready(function(){
   [box3, box5, box7]
   ];
 
-  //start new game
-  function playGame()
+  //switch between human and computer
+  // if ()
+  // {
+
+  // }
+  // else
+  // {
+    playGameWithHuman();
+  // }
+
+
+  //start new game between two players
+  function playGameWithHuman()
   {
     $('td').one('click', function() 
     {
@@ -27,7 +38,7 @@ $(document).ready(function(){
         $('p').replaceWith("<p>Player 2 turn</p>");
         if (turn > 3)
         {
-          checkWin();
+          checkWinWithHuman();
         }
       }
       else
@@ -38,7 +49,7 @@ $(document).ready(function(){
         $('p').replaceWith("<p>Player 1 turn</p>"); 
         if (turn > 4)
         {
-          checkWin();
+          checkWinWithHuman();
         }
       }
       turn++;
@@ -47,7 +58,7 @@ $(document).ready(function(){
   }
 
   //check if a player has won
-  function checkWin()
+  function checkWinWithHuman()
   {
     for (i = 0; i < winCombos.length; i++)
     {
@@ -65,6 +76,13 @@ $(document).ready(function(){
       }
     }
   }
+
+  //start a new game with computer
+  function playGameWithComputer()
+  {
+
+  }
+
 
   //check if the game is tied
   function tieGame()
@@ -105,7 +123,5 @@ $(document).ready(function(){
       location.reload();
     });
   }
-
-  return playGame(); 
 
 });
