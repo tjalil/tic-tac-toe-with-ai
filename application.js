@@ -1,7 +1,9 @@
 $(document).ready(function(){
+
   var turn = 0;
   var player1 = [];
   var player2 = [];
+  var computer = [];
 
   var winCombos = [
   [box1, box2, box3], 
@@ -14,28 +16,48 @@ $(document).ready(function(){
   [box3, box5, box7]
   ];
 
-  //switch between human and computer
-  // if ()
-  // {
+  playGameWithHuman();
 
-  // }
-  // else
-  // {
-    playGameWithHuman();
-  // }
+  function reset()
+  {
+    $('td').empty().off('click');
+    turn = 0;
+    player1 = [];
+    player2 = [];
+    computer = [];
+  }
 
+  //switch between 'multiplayer' and 'vs. Computer' on click
+  $('#play-human').click(function()
+    {
+      $("#play-human").hide();
+      $("#play-comp").show();
+      reset();
+      
+      playGameWithComp();
+    });
+
+  $('#play-comp').click(function()
+    {
+      $("#play-comp").hide();
+      $("#play-human").show();
+      reset();
+
+      playGameWithHuman();
+    });
 
   //start new game between two players
   function playGameWithHuman()
   {
-    $('td').one('click', function() 
+    $('td').on('click', function() 
     {
       if (turn % 2 === 0)
       {
         var id = $(this).attr("id");
         player1.push(id);
-        $(this).append('X');
+        $(this).text('X');
         $('p').replaceWith("<p>Player 2 turn</p>");
+
         if (turn > 3)
         {
           checkWinWithHuman();
@@ -45,13 +67,15 @@ $(document).ready(function(){
       {
         var id = $(this).attr("id");
         player2.push(id);
-        $(this).append('O');
-        $('p').replaceWith("<p>Player 1 turn</p>"); 
+        $(this).text('O');
+        $('p').replaceWith("<p>Player 1 turn</p>");
+
         if (turn > 4)
         {
           checkWinWithHuman();
         }
       }
+      console.log(turn);
       turn++;
       return tieGame();
     });
@@ -78,11 +102,28 @@ $(document).ready(function(){
   }
 
   //start a new game with computer
-  function playGameWithComputer()
+  function playGameWithComp()
   {
+    $('.box').click(function() 
+    {
+      if (turn % 2 === 0)
+      {
+        var id = $(this).attr("id");
+        player1.push(id);
+        $(this).append('X');
+        $('p').replaceWith("<p>Player 2 turn</p>");
 
+        if (turn > 3)
+        {
+          checkWinWithHuman();
+        }
+      }
+      else
+      {
+        
+      }
+    });
   }
-
 
   //check if the game is tied
   function tieGame()

@@ -94,3 +94,21 @@ table
   cursor: default;
 }
 
+.play-vs
+{
+  font-size: 2rem;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 2px;
+  cursor: default;
+  float: right;
+  margin-right: 20px;
+  background-color: #2ecc71;
+  color: white;
+}
+
+.play-vs:hover
+{
+  cursor: pointer;
+}
+
